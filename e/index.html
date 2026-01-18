@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Iklan</title>
 <script>
-  const id = window.location.pathname.split('/').pop();
+(async () => {
+  const id = new URLSearchParams(location.search).get('id');
+  if (!id) {
+    document.body.innerHTML = "ID tidak ditemukan";
+    return;
+  }
 
-  // LINK IKLAN (Monetag, dll)
-  const adsLink = "https://otieu.com/4/9938705";
+  const res = await fetch('data.json');
+  const json = await res.json();
 
-  // setelah iklan ditutup → lanjut ke video
-  const videoLink = "https://viidey.cam/e/" + id;
-
-  window.location.href = adsLink;
-
-  // fallback auto redirect ke video
-  setTimeout(() => {
-    window.location.href = videoLink;
-  }, 8000);
+  if (json[id]) {
+    location.href = json[id].ads;
+  } else {
+    document.body.innerHTML = "Link tidak valid";
+  }
+})();
 </script>
 </head>
-<body>
-Please wait...
-</body>
+<body></body>
 </html>
