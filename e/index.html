@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Loading...</title>
+<script>
+(async function() {
+    const path = window.location.pathname.split("/");
+    const key = path[path.length - 1];
+
+    try {
+        const res = await fetch("data.json");
+        const data = await res.json();
+
+        if (data[key]) {
+            window.location.href = data[key] + "?r=" + Date.now();
+        } else {
+            document.body.innerHTML = "Link tidak ditemukan";
+        }
+    } catch (e) {
+        document.body.innerHTML = "Error loading data";
+    }
+})();
+</script>
+</head>
+<body>
+Loading...
+</body>
+</html>
