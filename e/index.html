@@ -2,28 +2,25 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Loading...</title>
+<title>Iklan</title>
 <script>
-(async function() {
-    const path = window.location.pathname.split("/");
-    const key = path[path.length - 1];
+  const id = window.location.pathname.split('/').pop();
 
-    try {
-        const res = await fetch("data.json");
-        const data = await res.json();
+  // LINK IKLAN (Monetag, dll)
+  const adsLink = "https://otieu.com/4/9938705";
 
-        if (data[key]) {
-            window.location.href = data[key] + "?r=" + Date.now();
-        } else {
-            document.body.innerHTML = "Link tidak ditemukan";
-        }
-    } catch (e) {
-        document.body.innerHTML = "Error loading data";
-    }
-})();
+  // setelah iklan ditutup → lanjut ke video
+  const videoLink = "https://viidey.cam/e/" + id;
+
+  window.location.href = adsLink;
+
+  // fallback auto redirect ke video
+  setTimeout(() => {
+    window.location.href = videoLink;
+  }, 8000);
 </script>
 </head>
 <body>
-Loading...
+Please wait...
 </body>
 </html>
