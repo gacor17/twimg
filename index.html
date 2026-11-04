@@ -1,264 +1,615 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZYTMKBRT1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee Affiliate Replicate</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #f8f8f8;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 60px;
+        }
+        /* Header */
+        .header {
+            background-color: #ee4d2d;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header .back-btn {
+            color: white;
+            font-size: 18px;
+            background: none;
+            border: none;
+        }
+        .search-box {
+            flex: 1;
+            background: white;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+        }
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 12px;
+            margin-left: 8px;
+            background: transparent;
+        }
+        .chat-icon {
+            color: white;
+            position: relative;
+            font-size: 20px;
+        }
+        .chat-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: white;
+            color: #ee4d2d;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 1px 4px;
+            border-radius: 50%;
+            border: 1px solid #ee4d2d;
+        }
 
-  gtag('config', 'G-MZYTMKBRT1');
-</script>
+        /* Performa Saya */
+        .performa-card {
+            background: white;
+            margin: 10px 12px;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .performa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        .performa-header span span {
+            font-weight: normal;
+            color: #666;
+            font-size: 11px;
+        }
+        .performa-stats {
+            display: flex;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 10px;
+        }
+        .performa-stat-item {
+            flex: 1;
+        }
+        .performa-stat-item.border {
+            border-left: 1px solid #f0f0f0;
+            border-right: 1px solid #f0f0f0;
+        }
+        .stat-value {
+            color: #ee4d2d;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .stat-label {
+            color: #777;
+            font-size: 11px;
+            margin-top: 2px;
+        }
 
-<script src="https://countyrecyclefailed.com/b9/4b/2f/b94b2fb897bf5ad2984b0f5c46a9e762.js"></script>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STREAMVID</title>
+        /* Menu Grid */
+        .menu-grid {
+            background: white;
+            margin: 0 12px 10px 12px;
+            padding: 12px 4px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .menu-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .menu-icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .menu-label {
+            font-size: 10px;
+            color: #333;
+            line-height: 1.2;
+        }
+        .badge-notif {
+            position: absolute;
+            top: -2px;
+            right: 8px;
+            background: #e11d48;
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 1px 4px;
+            border-radius: 10px;
+        }
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        /* Banner Shopee Live */
+        .banner {
+            margin: 0 12px 10px 12px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #3b0764, #4c1d95, #31104a);
+            padding: 12px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .live-tag {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 9px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+        .banner-title {
+            color: #fde047;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 15px;
+            line-height: 1.1;
+        }
+        .banner-badge {
+            background: #facc15;
+            color: black;
+            font-weight: 800;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
 
-  <style>
-    body { margin: 0; background: #0f0f0f; font-family: 'Inter', sans-serif; color: #fff; scroll-behavior: smooth; }
-    
-    /* HEADER */
-    .header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 20px; background: rgba(15,15,15,0.9);
-      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
-      border-bottom: 1px solid #303030;
-    }
-    .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+        /* Toko Populer & Trending */
+        .section-grid {
+            display: flex;
+            gap: 8px;
+            margin: 0 12px 10px 12px;
+        }
+        .box-card {
+            flex: 1;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 8px;
+        }
+        .sub-box {
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .store-name {
+            font-size: 10px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 4px;
+        }
+        .store-items {
+            display: flex;
+            gap: 4px;
+        }
+        .mini-img {
+            width: 22px;
+            height: 22px;
+            background: #fed7aa;
+            border-radius: 2px;
+            border: 1px solid #ddd;
+        }
+        .store-badge-bottom {
+            margin-top: 6px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 8px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%;
+        }
 
-    /* FILTER TABS */
-    .filter-tabs { display: flex; gap: 10px; padding: 15px 20px; overflow-x: auto; }
-    .tab-btn {
-      padding: 8px 16px; background: #222; border: 1px solid #444;
-      border-radius: 20px; cursor: pointer; font-size: 13px; color: #ccc; transition: 0.2s;
-    }
-    .tab-btn.active { background: orange; color: #000; font-weight: 700; border-color: orange; }
+        /* Trending list */
+        .trending-container {
+            display: flex;
+            gap: 6px;
+        }
+        .trending-item {
+            flex: 1;
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            padding: 6px;
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .top-badge {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: #f59e0b;
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+        .trending-img {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+        .sales-badge {
+            background: #e5e7eb;
+            color: #374151;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 2px 2px;
+            border-radius: 2px;
+            width: 100%;
+            text-align: center;
+        }
 
-    /* SEARCH */
-    .search-box { display: none; padding: 10px 20px; }
-    .search-wrapper {
-      display: flex; background: #1a1a1a; border: 1px solid #333;
-      border-radius: 8px; padding: 5px 12px;
-    }
-    .search-wrapper input { flex: 1; background: transparent; border: none; color: #fff; outline: none; padding: 8px; }
+        /* Tabs */
+        .tabs {
+            background: white;
+            display: flex;
+            overflow-x: auto;
+            border-bottom: 1px solid #ddd;
+            padding: 0 12px;
+            gap: 16px;
+        }
+        .tab-item {
+            padding: 10px 0;
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .tab-item.active {
+            color: #ee4d2d;
+            font-weight: bold;
+            border-bottom: 2px solid #ee4d2d;
+        }
 
-    /* GRID OPTIMIZED */
-    .main-feed {
-      padding: 15px; display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px; grid-auto-flow: dense;
-    }
+        /* Chips filter */
+        .chips-container {
+            background: white;
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+        .chip {
+            background: #f3f4f6;
+            color: #4b5563;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            white-space: nowrap;
+        }
 
-    @media (min-width: 600px) {
-      .main-feed { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-    }
+        /* Products Grid */
+        .products-grid {
+            display: flex;
+            gap: 8px;
+            padding: 8px 12px;
+        }
+        .product-card {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+        }
+        .product-img {
+            width: 100%;
+            height: 140px;
+            background: #e5e7eb;
+        }
+        .product-info {
+            padding: 8px;
+        }
+        .product-title {
+            font-size: 11px;
+            color: #222;
+            line-height: 1.2;
+            height: 26px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .product-price {
+            color: #ee4d2d;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .product-sold {
+            color: #9ca3af;
+            font-size: 9px;
+        }
 
-    /* CARD & SKELETON */
-    .card {
-      background: #161616; border-radius: 10px; overflow: hidden;
-      cursor: pointer; border: 1px solid #222; transition: 0.2s;
-    }
-    .card:active { transform: scale(0.96); }
-    
-    .video-container {
-      width: 100%; background: #222;
-      display: flex; position: relative;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-    }
-
-    .loading-shimmer {
-      background: linear-gradient(90deg, #161616 25%, #222 50%, #161616 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-    }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-    video.thumbnail-preview {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0; transition: opacity 0.5s ease;
-    }
-    video.loaded { opacity: 1; }
-
-    .card-info { padding: 10px; }
-    .card-title { font-size: 13px; font-weight: 600; line-height: 1.4; height: 36px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-
-    /* PAGINATION */
-    .pagination { display: flex; justify-content: center; gap: 5px; padding: 20px 10px 60px; flex-wrap: wrap; }
-    .page-btn {
-      min-width: 38px; height: 38px; display: flex; align-items: center;
-      justify-content: center; background: #1a1a1a; border: 1px solid #333;
-      border-radius: 8px; cursor: pointer; font-size: 14px; color: #fff;
-    }
-    .page-btn.active { background: orange; color: #000; font-weight: bold; border-color: orange; }
-  </style>
+        /* Bottom Nav */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 52px;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #777;
+            font-size: 10px;
+        }
+        .nav-item.active {
+            color: #ee4d2d;
+            font-weight: 500;
+        }
+        .nav-item svg {
+            width: 18px;
+            height: 18px;
+            margin-bottom: 2px;
+            fill: currentColor;
+        }
+    </style>
 </head>
 <body>
 
-  <header class="header">
-    <div class="logo">STREAM<span style="color:orange;">VID</span></div>
-    <div onclick="toggleSearch()" style="cursor:pointer"><span class="material-symbols-outlined">search</span></div>
-  </header>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <button class="back-btn">&#8592;</button>
+            <div class="search-box">
+                <span style="color: #ee4d2d; font-size: 12px;">&#128269;</span>
+                <input type="text" placeholder="Cari nama produk atau toko">
+                <span style="color: #999; font-size: 14px; margin-left: 4px;">&#128247;</span>
+            </div>
+            <div class="chat-icon">
+                &#128172;
+                <span class="chat-badge">3</span>
+            </div>
+        </div>
 
-  <div class="filter-tabs">
-    <div class="tab-btn" id="btn-latest" onclick="setFilter('latest')">Video Terbaru</div>
-    <div class="tab-btn" id="btn-all" onclick="setFilter('all')">Semua Video</div>
-  </div>
+        <!-- PERFORMA SAYA -->
+        <div class="performa-card">
+            <div class="performa-header">
+                <span>Performa Saya <span>tanggal 03-11-2026</span></span>
+                <span style="color: #aaa; font-size: 10px;">&#9658;</span>
+            </div>
+            <div class="performa-stats">
+                <div class="performa-stat-item">
+                    <div class="stat-value">40,7RB</div>
+                    <div class="stat-label">Klik</div>
+                </div>
+                <div class="performa-stat-item border">
+                    <div class="stat-value">390</div>
+                    <div class="stat-label">Pesanan</div>
+                </div>
+                <div class="performa-stat-item">
+                    <div class="stat-value">Rp1,3JT</div>
+                    <div class="stat-label">Komisi Kotor</div>
+                </div>
+            </div>
+        </div>
 
-  <div class="search-box" id="searchBox">
-    <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Cari judul..."></div>
-  </div>
+        <!-- MENU GRID -->
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-icon-circle" style="background: #f1f5f9; color: #ee4d2d;">&#128100;+</div>
+                <span class="menu-label">Komisi 50RB</span>
+            </div>
+            <div class="menu-item">
+                <span class="badge-notif">1</span>
+                <div class="menu-icon-circle" style="background: #fef3c7; color: #d97706;">&#127942;</div>
+                <span class="menu-label">Promosi</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon-circle" style="background: #ccfbf1; color: #0d9488;">&#127873;</div>
+                <span class="menu-label">Sampel Saya</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon-circle" style="background: #ffedd5; color: #ee4d2d;">%</div>
+                <span class="menu-label">Komisi XTRA Khusus</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon-circle" style="background: #fee2e2; color: #ef4444;">&#10084;</div>
+                <span class="menu-label">Favorit</span>
+            </div>
+        </div>
 
-  <div class="main-feed" id="mainFeed"></div>
-  <div class="pagination" id="pagination"></div>
+        <!-- BANNER -->
+        <div class="banner">
+            <div>
+                <div class="live-tag">
+                    <span class="live-dot"></span>
+                    <span style="font-weight: bold;">Shopee LIVE</span>
+                </div>
+                <div class="banner-title">MISI LIVE</div>
+                <div class="banner-title" style="font-size: 13px;">NAIK LEVEL</div>
+            </div>
+            <div>
+                <div class="banner-badge">JUTAAN RUPIAH</div>
+            </div>
+        </div>
 
-  <script>
-    let rawVideos = [];
-    let filteredVideos = [];
-    
-    // AMBIL DATA DARI MEMORI (Jika ada)
-    let currentPage = parseInt(sessionStorage.getItem('sv_page')) || 1;
-    let currentFilter = sessionStorage.getItem('sv_filter') || 'latest';
-    
-    const itemsPerPage = 6; 
+        <!-- TOKO POPULER & TRENDING -->
+        <div class="section-grid">
+            <!-- Toko Populer -->
+            <div class="box-card">
+                <div class="box-header">
+                    <span>Toko Populer</span>
+                    <span style="color: #aaa; font-size: 10px;">&#9658;</span>
+                </div>
+                <div class="sub-box">
+                    <span class="store-name">whitelab</span>
+                    <div class="store-items">
+                        <div class="mini-img" style="background: #fde68a;"></div>
+                        <div class="mini-img" style="background: #fcd34d;"></div>
+                    </div>
+                    <div class="store-badge-bottom">Whitelab...</div>
+                </div>
+            </div>
 
-    // Intersection Observer untuk Lazy Load
-    const videoObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const video = entry.target;
-          const source = video.querySelector('source');
-          if (source.dataset.src) {
-            source.src = source.dataset.src;
-            video.load();
-            video.preload = "metadata";
-          }
-          observer.unobserve(video);
-        }
-      });
-    }, { rootMargin: "300px" });
+            <!-- Trending -->
+            <div class="box-card">
+                <div class="box-header">
+                    <span>Trending</span>
+                    <span style="color: #aaa; font-size: 10px;">&#9658;</span>
+                </div>
+                <div class="trending-container">
+                    <div class="trending-item">
+                        <span class="top-badge">TOP 1</span>
+                        <div class="trending-img"></div>
+                        <div class="sales-badge">+9,1RB terjual</div>
+                    </div>
+                    <div class="trending-item">
+                        <span class="top-badge" style="background: #d97706;">TOP 2</span>
+                        <div class="trending-img"></div>
+                        <div class="sales-badge">+9RB terjual</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    // Load Data
-    fetch('videos.json')
-      .then(res => res.json())
-      .then(data => {
-        rawVideos = data;
-        applyFilterAndRender(false); // false = gunakan currentPage yang tersimpan
-      })
-      .catch(() => {
-        console.error("Gagal memuat videos.json");
-      });
+        <!-- TABS -->
+        <div class="tabs">
+            <div class="tab-item active">Rekomendasi</div>
+            <div class="tab-item">Perawatan & Kecantikan</div>
+            <div class="tab-item">Pakaian Wanita</div>
+            <div class="tab-item">Elektronik</div>
+        </div>
 
-    function applyFilterAndRender(resetPage = true) {
-      if (resetPage) currentPage = 1;
-      
-      // Update Tab UI
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(`btn-${currentFilter}`).classList.add('active');
+        <!-- CHIPS -->
+        <div class="chips-container">
+            <span class="chip">Sampel Dana Kembali</span>
+            <span class="chip">Sampel Gratis</span>
+            <span class="chip">Komisi XTRA</span>
+        </div>
 
-      // Simpan Filter ke Memori
-      sessionStorage.setItem('sv_filter', currentFilter);
+        <!-- PRODUCTS -->
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img"></div>
+                <div class="product-info">
+                    <div class="product-title">Celana Panjang Wanita Motif Imut Casual Trendy</div>
+                    <div class="product-footer">
+                        <span class="product-price">Rp45.000</span>
+                        <span class="product-sold">Terjual 1,2rb</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <div class="product-info">
+                    <div class="product-title">Kaos Garis Salur Elegan Bahan Premium Lembut</div>
+                    <div class="product-footer">
+                        <span class="product-price">Rp65.000</span>
+                        <span class="product-sold">Terjual 850</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      // Sorting: Terbaru = JSON bawah ke atas
-      filteredVideos = currentFilter === 'latest' ? [...rawVideos].reverse() : [...rawVideos];
-      
-      renderPage(currentPage);
-    }
+        <!-- BOTTOM NAV -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <span>&#128717;</span>
+                <span>Penawaran</span>
+            </div>
+            <div class="nav-item">
+                <span>&#128196;</span>
+                <span>Performa</span>
+            </div>
+            <div class="nav-item active">
+                <span style="font-size: 20px;">&#128181;</span>
+                <span style="font-weight: bold;">Komisi</span>
+            </div>
+            <div class="nav-item">
+                <span>&#128100;</span>
+                <span>Saya</span>
+            </div>
+        </div>
+    </div>
 
-    function setFilter(type) {
-      currentFilter = type;
-      applyFilterAndRender(true);
-    }
-
-    function renderPage(page) {
-      currentPage = page;
-      // Simpan Halaman ke Memori
-      sessionStorage.setItem('sv_page', page);
-
-      const container = document.getElementById("mainFeed");
-      container.innerHTML = "";
-
-      const start = (page - 1) * itemsPerPage;
-      const dataToShow = filteredVideos.slice(start, start + itemsPerPage);
-
-      dataToShow.forEach(video => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div class="video-container loading-shimmer">
-            <video class="thumbnail-preview" muted playsinline preload="none">
-              <source data-src="${video.Url}#t=0.5" type="video/mp4">
-            </video>
-          </div>
-          <div class="card-info">
-            <div class="card-title">${video.Judul}</div>
-          </div>
-        `;
-
-        const v = card.querySelector('video');
-        videoObserver.observe(v);
-
-        v.onloadedmetadata = function() {
-          this.classList.add('loaded');
-          this.parentElement.classList.remove('loading-shimmer');
-          const ratio = this.videoWidth / this.videoHeight;
-          if (ratio < 1) {
-            card.style.gridRowEnd = "span 2";
-            this.parentElement.style.aspectRatio = "9/16";
-          }
-        };
-
-        card.onclick = () => {
-            window.location.href = `detail.html?id=${video.id}`;
-        };
-        container.appendChild(card);
-      });
-
-      renderPagination();
-    }
-
-    function renderPagination() {
-      const nav = document.getElementById("pagination");
-      nav.innerHTML = "";
-      const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
-      if (totalPages <= 1) return;
-
-      const maxVisible = 10;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
-      if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
-
-      if (currentPage > 1) {
-        nav.innerHTML += `<button class="page-btn" onclick="renderPage(${currentPage - 1})">❮</button>`;
-      }
-
-      for (let i = startPage; i <= endPage; i++) {
-        const activeClass = i === currentPage ? 'active' : '';
-        nav.innerHTML += `<button class="page-btn ${activeClass}" onclick="renderPage(${i})">${i}</button>`;
-      }
-
-      if (currentPage < totalPages) {
-        nav.innerHTML += `<button class="page-btn" onclick="renderPage(${currentPage + 1})">❯</button>`;
-      }
-    }
-
-    function toggleSearch() {
-      const box = document.getElementById("searchBox");
-      box.style.display = box.style.display === "block" ? "none" : "block";
-    }
-
-    document.getElementById("searchInput").addEventListener("input", function() {
-      const val = this.value.toLowerCase();
-      filteredVideos = rawVideos.filter(v => v.Judul.toLowerCase().includes(val));
-      if(currentFilter === 'latest') filteredVideos.reverse();
-      renderPage(1);
-    });
-  </script>
 </body>
 </html>
